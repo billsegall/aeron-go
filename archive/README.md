@@ -52,8 +52,10 @@ Associated with this, the library does not lock and assumes management
 of reentrancy is handled by the caller.
 
 If needed it is simple in golang to wrap a synchronous API with a
-channel (see for example aeron.AddSubscription(). If overlapping
-asynchronous calls are needed then this is where you can add locking.
+channel (see for example aeron.AddSubscription(). Inherent in it's
+design, the archive protocol, does not expect overlapping calls. A
+simple locking wrapper might be simply added to an asyncronus wrapper
+to ensure sequenctial operations where needed.
 
 Some asynchronous events do exist (e.g, recording events) and to be
 delivered a polling mechanism is provided. Again this can be easily
